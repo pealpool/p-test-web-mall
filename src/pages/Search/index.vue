@@ -2412,7 +2412,7 @@ export default {
       .tab-ico{
         display: inline-block;
         position: relative;
-        /*background-image: url(img/toolbars.png);*/
+        /*background-images: url(img/toolbars.png);*/
         background-color:#7a6e6e ;
         border-radius: 3px 0 0 3px;
         z-index: 2;
@@ -2436,7 +2436,7 @@ export default {
     .tab-ico{
       display: inline-block;
       position: relative;
-      /*background-image: url(img/toolbars.png);*/
+      /*background-images: url(img/toolbars.png);*/
       background-color:#7a6e6e ;
       border-radius: 3px 0 0 3px;
       z-index: 2;
