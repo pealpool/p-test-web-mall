@@ -33,10 +33,14 @@ import Rank from "@/pages/Home/Rank"
 import Like from "@/pages/Home/Like"
 import Floor from "@/pages/Home/Floor"
 import Brand from "@/pages/Home/Brand"
+import {xApi} from '@/api'
 
 export default {
   components: {
     ListCont, TodayRec, Rank, Like, Floor, Brand
+  },
+  mounted() {
+    console.log(xApi.getListCont());
   }
 }
 </script>
