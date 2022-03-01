@@ -110,10 +110,10 @@
 </template>
 
 <script>
-import {gApi} from '@/api';
+
 export default {
   mounted() {
-    console.log(gApi.getListCont());
+    this.$store.dispatch('getListArr');
   }
 }
 </script>
