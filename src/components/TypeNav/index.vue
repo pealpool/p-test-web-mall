@@ -1693,7 +1693,10 @@
 
 <script>
 export default {
-  name: "TypeNav"
+  name: "TypeNav",
+  mounted() {
+    this.$store.dispatch('getListArr');
+  }
 }
 </script>
 

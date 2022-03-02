@@ -8,16 +8,14 @@ export const getApi = axios.create({
 })
 
 getApi.interceptors.request.use((config) => {
-    nprogress.start()
-    console.log(nprogress)
-    return config
+    nprogress.start();
+    return config;
 })
 getApi.interceptors.response.use(res => {
-    nprogress.done()
-    return res
+    nprogress.done();
+    return res;
 }, error => {
     console.log('数据返回失败:', error);
-    return new Promise(() => {
-    })
+    return new Promise(() => {});
 })
 

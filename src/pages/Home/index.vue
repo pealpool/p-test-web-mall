@@ -40,7 +40,7 @@ export default {
     ListCont, TodayRec, Rank, Like, Floor, Brand
   },
   mounted() {
-    console.log(xApi.getListCont());
+    // console.log(xApi.getListCont());
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import {gApi} from '@/api';
+import {xApi} from '@/api';
 
 
 const state = {
@@ -7,7 +7,7 @@ const state = {
 
 const actions = {
     async getListArr(context) {
-        let arr = await gApi.getListCont();
+        let arr = await xApi.getListCont();
         context.commit('GETLISTARR', arr);
     }
 };

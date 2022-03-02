@@ -112,9 +112,7 @@
 <script>
 
 export default {
-  mounted() {
-    this.$store.dispatch('getListArr');
-  }
+
 }
 </script>
 
