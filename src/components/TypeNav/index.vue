@@ -1,6 +1,6 @@
 <template>
   <div class="type-nav">
-    <div class="container">
+    <div @mouseleave="reBg" class="container">
       <h2 class="all">全部商品分类</h2>
       <nav class="nav">
         <a href="###">服装城</a>
@@ -14,11 +14,17 @@
       </nav>
       <div class="sort">
         <div class="all-sort-list2">
-          <div v-for="c1 in categoryList" :key="c1.categoryId" class="item">
-            <h3>
+          <div v-for="(c1,index) in categoryList" :key="c1.categoryId" class="item">
+            <h3
+                :class="{cur : index == whichIndex}"
+                @mouseenter="changeBg(index)"
+            >
               <a href="">{{ c1.categoryName }}</a>
             </h3>
-            <div class="item-list clearfix">
+            <div
+                :style="{display:index == whichIndex ? 'block':'none'}"
+                 class="item-list clearfix"
+            >
               <div class="subitem">
                 <dl v-for="c2 in c1.categoryChild" :key="c2.categoryId" class="fore">
                   <dt>
@@ -44,10 +50,23 @@ import {mapState} from 'vuex';
 
 export default {
   name: "TypeNav",
+  data() {
+    return {
+      whichIndex: -1
+    }
+  },
   computed: {
     ...mapState({
       categoryList: (state) => state.typeNavList.listArr,
     })
+  },
+  methods: {
+    changeBg(index) {
+      this.whichIndex = index;
+    },
+    reBg(){
+      this.whichIndex = -1;
+    }
   }
 }
 </script>
@@ -108,6 +127,10 @@ export default {
             }
           }
 
+          .cur {
+            background: #ccc;
+          }
+
           .item-list {
             display: none;
             position: absolute;
@@ -159,12 +182,6 @@ export default {
                   }
                 }
               }
-            }
-          }
-
-          &:hover {
-            .item-list {
-              display: block;
             }
           }
         }
