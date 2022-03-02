@@ -3,36 +3,47 @@
     <div @mouseleave="reBg" class="container">
       <h2 class="all">全部商品分类</h2>
       <nav class="nav">
-        <a href="###">服装城</a>
-        <a href="###">美妆馆</a>
-        <a href="###">尚品汇超市</a>
-        <a href="###">全球购</a>
-        <a href="###">闪购</a>
-        <a href="###">团购</a>
-        <a href="###">有趣</a>
-        <a href="###">秒杀</a>
+        <a href="#">服装城</a>
+        <a href="#">美妆馆</a>
+        <a href="#">尚品汇超市</a>
+        <a href="#">全球购</a>
+        <a href="#">闪购</a>
+        <a href="#">团购</a>
+        <a href="#">有趣</a>
+        <a href="#">秒杀</a>
       </nav>
       <div class="sort">
-        <div class="all-sort-list2">
+        <div class="all-sort-list2" @click="goSearch">
           <div v-for="(c1,index) in categoryList" :key="c1.categoryId" class="item">
             <h3
-                :class="{cur : index == whichIndex}"
+                :class="{cur : index === whichIndex}"
                 @mouseenter="changeBg(index)"
             >
-              <a href="">{{ c1.categoryName }}</a>
+              <a :data-cat1ID="c1.categoryId"
+                 :data-CatName=" c1.categoryName "
+              >{{ c1.categoryName }}
+              </a>
             </h3>
             <div
-                :style="{display:index == whichIndex ? 'block':'none'}"
-                 class="item-list clearfix"
+                :style="{display:index === whichIndex ? 'block':'none'}"
+                class="item-list clearfix"
             >
               <div class="subitem">
                 <dl v-for="c2 in c1.categoryChild" :key="c2.categoryId" class="fore">
                   <dt>
-                    <a href="">{{ c2.categoryName }}</a>
+                    <a
+                        :data-cat2ID="c2.categoryId"
+                        :data-CatName=" c2.categoryName "
+                    >{{ c2.categoryName }}
+                    </a>
                   </dt>
                   <dd>
                     <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                      <a href="">{{ c3.categoryName }}</a>
+                      <a
+                          :data-cat3ID="c3.categoryId"
+                          :data-CatName=" c3.categoryName "
+                      >{{ c3.categoryName }}
+                      </a>
                     </em>
                   </dd>
                 </dl>
@@ -47,6 +58,7 @@
 
 <script>
 import {mapState} from 'vuex';
+import throttle from 'lodash/throttle'
 
 export default {
   name: "TypeNav",
@@ -61,11 +73,33 @@ export default {
     })
   },
   methods: {
-    changeBg(index) {
+    changeBg:throttle (function(index) {
       this.whichIndex = index;
-    },
-    reBg(){
+    },20),
+    reBg() {
       this.whichIndex = -1;
+    },
+    goSearch(e) {
+      e.preventDefault();
+      let {cat1id, cat3id, cat2id, catname} = e.target.dataset;
+      // console.log(cat1id, cat3id, cat2id, catname);
+      if (catname) {
+        let query = {categoryName: catname};
+        if (cat1id) {
+          query.category1id = cat1id;
+        } else if (cat2id) {
+          query.category2id = cat2id;
+        } else if (cat3id) {
+          query.category3id = cat3id;
+        }
+        let location = {name: 'search'};
+        if(this.$route.params){
+          location.params = this.$route.params;
+        }
+        location.query = query;
+        this.$router.push(location);
+      }
+
     }
   }
 }
@@ -74,6 +108,10 @@ export default {
 <style scoped lang="less">
 .type-nav {
   border-bottom: 2px solid #e1251b;
+
+  a {
+    cursor: pointer;
+  }
 
   .container {
     width: 1200px;
@@ -108,7 +146,6 @@ export default {
       top: 45px;
       width: 210px;
       height: 461px;
-      position: absolute;
       background: #fafafa;
       z-index: 999;
 

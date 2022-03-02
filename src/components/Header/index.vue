@@ -53,7 +53,7 @@ export default {
       this.$router.push({
         name:'search',
         params:{
-          id:this.searchKey
+          id:this.searchKey || undefined
         },
         query:{
           searchKey:this.searchKey

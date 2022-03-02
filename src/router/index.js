@@ -19,7 +19,7 @@ export default new VueRouter({
         },
         {
             name:'search',
-            path: '/search/:id',
+            path: '/search/:id?',
             component: Search
         },
         {
