@@ -2,7 +2,7 @@
   <div>
 
     <!-- 商品分类导航 -->
-    <type-nav/>
+    <TypeNav/>
 
     <!--列表-->
     <ListCont/>
@@ -33,14 +33,13 @@ import Rank from "@/pages/Home/Rank"
 import Like from "@/pages/Home/Like"
 import Floor from "@/pages/Home/Floor"
 import Brand from "@/pages/Home/Brand"
-import {xApi} from '@/api'
+import TypeNav from "@/components/TypeNav"
 
 export default {
   components: {
-    ListCont, TodayRec, Rank, Like, Floor, Brand
+    ListCont, TodayRec, Rank, Like, Floor, Brand, TypeNav
   },
   mounted() {
-    // console.log(xApi.getListCont());
   }
 }
 </script>

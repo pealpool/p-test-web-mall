@@ -12,7 +12,10 @@ import Header from "@/components/Header";
 
 export default {
   name: 'App',
-  components: {Header, Footer}
+  components: {Header, Footer},
+  mounted() {
+    this.$store.dispatch('getListArr');
+  }
 }
 </script>
 

@@ -1,4 +1,4 @@
-import {xApi} from '@/api';
+import {getListCont} from '@/api';
 
 
 const state = {
@@ -7,14 +7,14 @@ const state = {
 
 const actions = {
     async getListArr(context) {
-        let arr = await xApi.getListCont();
-        context.commit('GETLISTARR', arr);
+        let arr = await getListCont();
+        context.commit('GETLISTARR', arr.data);
     }
 };
 
 const mutations = {
     GETLISTARR(state, value) {
-        state.listArr = value;
+        state.listArr = value.data;
     }
 };
 
