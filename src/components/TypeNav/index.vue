@@ -1,7 +1,51 @@
 <template>
   <div class="type-nav">
-    <div @mouseleave="reBg" class="container">
-      <h2 class="all">全部商品分类</h2>
+    <div class="container">
+      <div @mouseenter="showList" @mouseleave="reBg">
+        <h2 class="all">全部商品分类</h2>
+        <transition name="sort">
+          <div class="sort" v-show="listShow">
+            <div class="all-sort-list2" @click="goSearch">
+              <div v-for="(c1,index) in categoryList" :key="c1.categoryId" class="item">
+                <h3
+                    :class="{cur : index === whichIndex}"
+                    @mouseenter="changeBg(index)"
+                >
+                  <a :data-cat1ID="c1.categoryId"
+                     :data-CatName=" c1.categoryName "
+                  >{{ c1.categoryName }}
+                  </a>
+                </h3>
+                <div
+                    :style="{display:index === whichIndex ? 'block':'none'}"
+                    class="item-list clearfix"
+                >
+                  <div class="subitem">
+                    <dl v-for="c2 in c1.categoryChild" :key="c2.categoryId" class="fore">
+                      <dt>
+                        <a
+                            :data-cat2ID="c2.categoryId"
+                            :data-CatName=" c2.categoryName "
+                        >{{ c2.categoryName }}
+                        </a>
+                      </dt>
+                      <dd>
+                        <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+                          <a
+                              :data-cat3ID="c3.categoryId"
+                              :data-CatName=" c3.categoryName "
+                          >{{ c3.categoryName }}
+                          </a>
+                        </em>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
       <nav class="nav">
         <a href="#">服装城</a>
         <a href="#">美妆馆</a>
@@ -12,47 +56,8 @@
         <a href="#">有趣</a>
         <a href="#">秒杀</a>
       </nav>
-      <div class="sort">
-        <div class="all-sort-list2" @click="goSearch">
-          <div v-for="(c1,index) in categoryList" :key="c1.categoryId" class="item">
-            <h3
-                :class="{cur : index === whichIndex}"
-                @mouseenter="changeBg(index)"
-            >
-              <a :data-cat1ID="c1.categoryId"
-                 :data-CatName=" c1.categoryName "
-              >{{ c1.categoryName }}
-              </a>
-            </h3>
-            <div
-                :style="{display:index === whichIndex ? 'block':'none'}"
-                class="item-list clearfix"
-            >
-              <div class="subitem">
-                <dl v-for="c2 in c1.categoryChild" :key="c2.categoryId" class="fore">
-                  <dt>
-                    <a
-                        :data-cat2ID="c2.categoryId"
-                        :data-CatName=" c2.categoryName "
-                    >{{ c2.categoryName }}
-                    </a>
-                  </dt>
-                  <dd>
-                    <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                      <a
-                          :data-cat3ID="c3.categoryId"
-                          :data-CatName=" c3.categoryName "
-                      >{{ c3.categoryName }}
-                      </a>
-                    </em>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
+
   </div>
 </template>
 
@@ -64,7 +69,8 @@ export default {
   name: "TypeNav",
   data() {
     return {
-      whichIndex: -1
+      whichIndex: -1,
+      listShow: true
     }
   },
   computed: {
@@ -73,11 +79,14 @@ export default {
     })
   },
   methods: {
-    changeBg:throttle (function(index) {
+    changeBg: throttle(function (index) {
       this.whichIndex = index;
-    },20),
+    }, 20),
     reBg() {
       this.whichIndex = -1;
+      if (this.$route.path != '/home') {
+        this.listShow = false;
+      }
     },
     goSearch(e) {
       e.preventDefault();
@@ -93,13 +102,22 @@ export default {
           query.category3id = cat3id;
         }
         let location = {name: 'search'};
-        if(this.$route.params){
+        if (this.$route.params) {
           location.params = this.$route.params;
         }
         location.query = query;
         this.$router.push(location);
       }
-
+    },
+    showList() {
+      if (this.$route.path != '/home') {
+        this.listShow = true;
+      }
+    }
+  },
+  mounted() {
+    if (this.$route.path != '/home') {
+      this.listShow = false;
     }
   }
 }
@@ -148,6 +166,7 @@ export default {
       height: 461px;
       background: #fafafa;
       z-index: 999;
+      transition: all .3s ease-out;
 
       .all-sort-list2 {
         .item {
@@ -224,6 +243,19 @@ export default {
         }
       }
     }
+
+    .sort-enter,
+    .sort-leave-to {
+      //height: 0;
+      opacity: 0;
+    }
+
+    .sort-enter-to,
+    .sort-leave {
+      //height: 461px;
+      opacity: 1;
+    }
   }
 }
+
 </style>

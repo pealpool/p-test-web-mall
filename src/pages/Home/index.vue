@@ -42,6 +42,8 @@ export default {
   mounted() {
   }
 }
+//todo mockjs、swiper、floor
+
 </script>
 
 <style scoped lang="less">

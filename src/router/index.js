@@ -11,7 +11,7 @@ export default new VueRouter({
     routes: [
         {
             path: '/',
-            component: Home
+            component: () => import('@/pages/Home')
         },
         {
             path: '/home',

@@ -43,22 +43,21 @@
 <script>
 
 export default {
-  data(){
+  data() {
     return {
-      searchKey:''
+      searchKey: ''
     }
   },
-  methods:{
-    searchGo(){
-      this.$router.push({
-        name:'search',
-        params:{
-          id:this.searchKey || undefined
-        },
-        query:{
-          searchKey:this.searchKey
-        }
-      })
+  methods: {
+    searchGo() {
+
+      if (this.$route.query) {
+        let l = {
+          name: 'search', params: {id: this.searchKey || undefined}
+        };
+        l.query = this.$store.query;
+        this.$router.push(l);
+      }
     }
   }
 }
