@@ -1,52 +1,46 @@
 <template>
-  <swiper
-      :slides-per-view="1"
-      :space-between="30"
-      :loop="true"
-      :pagination="true"
-      :navigation="true"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
-  >
-    <swiper-slide v-for="li in listImage" :key="li.id">
-      <img :src="li.imgUrl"/>
-    </swiper-slide>
-  </swiper>
-
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div v-for="li in listImage" :key="li.id" class="swiper-slide">
+        <img :src="li.imgUrl"/>
+      </div>
+    </div>
+    <!-- 如果需要分页器 -->
+    <div class="swiper-pagination"></div>
+    <!-- 如果需要导航按钮 -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  </div>
 </template>
 
 <script>
-import { Navigation, Pagination } from 'swiper';
-import { SwiperCore, Swiper, SwiperSlide } from 'swiper-vue2';
-import 'swiper/swiper-bundle.css';
 
-SwiperCore.use([Navigation, Pagination]);
+import Swiper from "swiper";
+import "swiper/css/swiper.css";
 
 export default {
   props: ['listImage'],
-  components: {
-    Swiper,
-    SwiperSlide
-  },
-/*  watch:{
-    immediate: true,
-    handler(){
-      this.$nextTick(() => {
-        const s = {
-          pagination: {
-            clickable: true,
-          },
-        }
-        Swiper = s
-      });
-    }
-  },*/
-  methods: {
-    onSwiper (swiper) {
-      // console.log(swiper)
-    },
-    onSlideChange () {
-      // console.log('slide change')
+  watch: {
+    listImage: {
+      immediate: true,
+      handler() {
+        this.$nextTick(() => {
+          let mySwiper = new Swiper('.swiper-container', {
+            loop: true,
+            // 如果需要分页器
+            pagination: {
+              el: ".swiper-pagination",
+              //点击小球的时候也切换图片
+              clickable: true,
+            },
+            // 如果需要前进后退按钮
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        })
+      }
     }
   }
 }
