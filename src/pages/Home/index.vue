@@ -17,8 +17,7 @@
     <Like/>
 
     <!--楼层-->
-    <Floor/>
-    <Floor/>
+    <Floor v-for="(f,index) in floorJSON" :key="f.id" :floorImage="floorJSON[index]"/>
 
     <!--商标-->
     <Brand/>
@@ -52,11 +51,13 @@ export default {
     (async function (){
       let r = await getListCont();
       if(r.data.code == 200){
-        console.log('数据',r.data);
         $this.listContJSON = r.data.data;
-        console.log($this.listContJSON);
-      }else {
-        console.log('r=',r);
+      }
+    })();
+    (async function (){
+      let r = await getFloor();
+      if(r.data.code == 200){
+        $this.floorJSON = r.data.data;
       }
     })();
 

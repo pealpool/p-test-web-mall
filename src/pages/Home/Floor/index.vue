@@ -2,29 +2,12 @@
   <div class="floor">
     <div class="py-container">
       <div class="title clearfix">
-        <h3 class="fl">家用电器</h3>
+        <h3 class="fl">{{ floorImage.name }}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
-            <li class="active">
-              <a href="#tab1" data-toggle="tab">热门</a>
-            </li>
-            <li>
-              <a href="#tab2" data-toggle="tab">大家电</a>
-            </li>
-            <li>
-              <a href="#tab3" data-toggle="tab">生活电器</a>
-            </li>
-            <li>
-              <a href="#tab4" data-toggle="tab">厨房电器</a>
-            </li>
-            <li>
-              <a href="#tab5" data-toggle="tab">应季电器</a>
-            </li>
-            <li>
-              <a href="#tab6" data-toggle="tab">空气/净水</a>
-            </li>
-            <li>
-              <a href="#tab7" data-toggle="tab">高端电器</a>
+            <li v-for="(f,index) in floorImage.navList" :key="index"
+                :class="(index === 0) ? 'active' :''">
+              <a :href="f.url" data-toggle="tab">{{ f.text }}</a>
             </li>
           </ul>
         </div>
@@ -34,26 +17,16 @@
           <div class="floor-1">
             <div class="blockgary">
               <ul class="jd-list">
-                <li>节能补贴</li>
-                <li>4K电视</li>
-                <li>空气净化器</li>
-                <li>IH电饭煲</li>
-                <li>滚筒洗衣机</li>
-                <li>电热水器</li>
+                <li v-for="(f,index) in floorImage.keywords" :key="index">{{ f }}</li>
               </ul>
-              <img src="./images/floor-1-1.png"/>
+              <img :src="floorImage.imgUrl"/>
             </div>
             <div class="floorBanner">
               <div class="swiper-container" id="floor1Swiper">
                 <div class="swiper-wrapper">
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b01.png">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b02.png">
-                  </div>
-                  <div class="swiper-slide">
-                    <img src="./images/floor-1-b03.png">
+                  <div v-for="f in floorImage.carouselList" :key="f.id"
+                      class="swiper-slide">
+                    <img :src="f.imgUrl">
                   </div>
                 </div>
                 <!-- 如果需要分页器 -->
@@ -67,22 +40,22 @@
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-2.png"/>
+                <img :src="floorImage.recommendList[0]"/>
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-3.png"/>
+                <img :src="floorImage.recommendList[1]"/>
               </div>
             </div>
             <div class="split center">
-              <img src="./images/floor-1-4.png"/>
+              <img :src="floorImage.bigImg"/>
             </div>
             <div class="split">
               <span class="floor-x-line"></span>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-5.png"/>
+                <img :src="floorImage.recommendList[2]"/>
               </div>
               <div class="floor-conver-pit">
-                <img src="./images/floor-1-6.png"/>
+                <img :src="floorImage.recommendList[3]"/>
               </div>
             </div>
           </div>
@@ -94,6 +67,7 @@
 
 <script>
 export default {
+  props: ['floorImage'],
 
 }
 </script>
