@@ -1,4 +1,8 @@
-import {getApi} from '@/api/ajax'
+import {trueRequest} from '@/api/ajax'
+import {mockRequest} from "@/api/MockAjax";
 
-export const getListCont = () => getApi.get('/product/getBaseCategoryList');
+export const getCategoryList = () => trueRequest.get('/product/getBaseCategoryList');
+export const getListCont = () => mockRequest.get('/listCont');
+export const getFloor = () => mockRequest.get('/floor');
+
 

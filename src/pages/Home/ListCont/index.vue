@@ -5,17 +5,9 @@
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg"/>
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner2.jpg"/>
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner3.jpg"/>
-            </div>
-            <div class="swiper-slide">
-              <img src="./images/banner4.jpg"/>
+            <div v-for="li in listImage" :key="li.id"
+                class="swiper-slide">
+              <img :src="li.imgUrl"/>
             </div>
           </div>
           <!-- 如果需要分页器 -->
@@ -112,6 +104,7 @@
 <script>
 
 export default {
+  props: ['listImage'],
 
 }
 </script>

@@ -1,4 +1,4 @@
-import {getListCont} from '@/api';
+import {getCategoryList} from '@/api';
 
 
 const state = {
@@ -7,7 +7,7 @@ const state = {
 
 const actions = {
     async getListArr(context) {
-        let arr = await getListCont();
+        let arr = await getCategoryList();
         context.commit('GETLISTARR', arr.data);
     }
 };

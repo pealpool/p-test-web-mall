@@ -5,7 +5,7 @@
     <TypeNav/>
 
     <!--列表-->
-    <ListCont/>
+    <ListCont :listImage="listContJSON"/>
 
     <!--今日推荐-->
     <TodayRec/>
@@ -34,12 +34,35 @@ import Like from "@/pages/Home/Like"
 import Floor from "@/pages/Home/Floor"
 import Brand from "@/pages/Home/Brand"
 import TypeNav from "@/components/TypeNav"
+import {getListCont, getFloor} from '@/api'
 
 export default {
+  name: 'home',
+  data() {
+    return {
+      listContJSON: [],
+      floorJSON: [],
+    }
+  },
   components: {
     ListCont, TodayRec, Rank, Like, Floor, Brand, TypeNav
   },
   mounted() {
+    let $this = this;
+    (async function (){
+      let r = await getListCont();
+      if(r.data.code == 200){
+        console.log('数据',r.data);
+        $this.listContJSON = r.data.data;
+        console.log($this.listContJSON);
+      }else {
+        console.log('r=',r);
+      }
+    })();
+
+    // async (() => {
+    //   this.listContJSON = (await getListCont()).data;
+    // })()
   }
 }
 //todo mockjs、swiper、floor
