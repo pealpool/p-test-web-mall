@@ -60,10 +60,6 @@ export default {
         $this.floorJSON = r.data.data;
       }
     })();
-
-    // async (() => {
-    //   this.listContJSON = (await getListCont()).data;
-    // })()
   }
 }
 //todo mockjs、swiper、floor

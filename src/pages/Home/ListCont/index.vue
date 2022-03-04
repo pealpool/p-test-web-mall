@@ -3,20 +3,9 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
-          <div class="swiper-wrapper">
-            <div v-for="li in listImage" :key="li.id"
-                class="swiper-slide">
-              <img :src="li.imgUrl"/>
-            </div>
-          </div>
-          <!-- 如果需要分页器 -->
-          <div class="swiper-pagination"></div>
 
-          <!-- 如果需要导航按钮 -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-        </div>
+        <Carousel :listImage="listImage"/>
+
       </div>
       <div class="right">
         <div class="news">
@@ -104,7 +93,7 @@
 <script>
 
 export default {
-  props: ['listImage'],
+  props: ['listImage']
 
 }
 </script>
