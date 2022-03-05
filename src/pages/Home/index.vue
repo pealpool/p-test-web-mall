@@ -62,7 +62,6 @@ export default {
     })();
   }
 }
-//todo mockjs、swiper、floor
 
 </script>
 
