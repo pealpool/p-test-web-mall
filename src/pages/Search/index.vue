@@ -55,7 +55,7 @@
           </ul>
         </div>
         <!--selector-->
-        <SearchSelector/>
+        <SearchSelector />
         <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
@@ -450,7 +450,7 @@ import SearchSelector from './SearchSelector'
 
 export default {
   name: 'Search',
-  comments: {SearchSelector},
+  components: {SearchSelector},
 
 }
 //todo Search
@@ -963,6 +963,80 @@ export default {
             font-size: 14px;
             float: right;
             width: 241px;
+          }
+        }
+      }
+    }
+
+    .hot-sale {
+      margin-bottom: 5px;
+      border: 1px solid #ddd;
+
+      .title {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 21px;
+        border-bottom: 1px solid #ddd;
+        background: #f1f1f1;
+        color: #333;
+        margin: 0;
+        padding: 5px 0 5px 15px;
+      }
+
+      .hot-list {
+        padding: 15px;
+
+        ul {
+          display: flex;
+
+          li {
+            width: 25%;
+            height: 100%;
+
+            .list-wrap {
+              .p-img, .price, .attr, .commit {
+                padding-left: 15px;
+              }
+
+              .p-img {
+                img {
+                  max-width: 100%;
+                  vertical-align: middle;
+                  border: 0;
+                }
+              }
+
+              .attr {
+                width: 85%;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+                margin-bottom: 8px;
+                min-height: 38px;
+                cursor: pointer;
+                line-height: 1.8;
+              }
+
+              .price {
+                font-size: 18px;
+                color: #c81623;
+
+                strong {
+                  font-weight: 700;
+
+                  i {
+                    margin-left: -5px;
+                  }
+                }
+              }
+
+              .commit {
+                height: 22px;
+                font-size: 13px;
+                color: #a7a7a7;
+              }
+            }
           }
         }
       }

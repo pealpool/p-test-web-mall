@@ -160,6 +160,7 @@
 
 <script>
 export default {
+  name: 'SearchSelector',
 
 }
 </script>

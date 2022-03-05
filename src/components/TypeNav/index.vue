@@ -84,7 +84,7 @@ export default {
     }, 20),
     reBg() {
       this.whichIndex = -1;
-      if (this.$route.path != '/home') {
+      if (this.$route.path !== '/home') {
         this.listShow = false;
       }
     },
@@ -110,13 +110,13 @@ export default {
       }
     },
     showList() {
-      if (this.$route.path != '/home') {
+      if (this.$route.path !== '/home') {
         this.listShow = true;
       }
     }
   },
   mounted() {
-    if (this.$route.path != '/home') {
+    if (this.$route.path !== '/home') {
       this.listShow = false;
     }
   }
