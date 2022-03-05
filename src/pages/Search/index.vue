@@ -456,7 +456,188 @@ export default {
 //todo Search
 </script>
 
-<style lang="less" scoped>
+<style scoped lang="less">
+.toolbar{
+  position: fixed;
+  z-index: 999;
+  width: 300px;
+  height: 100%;
+  background-color: #7a6e6e;
+  transition: right .3s ease-in-out 0s;
+  &.toolbar-out{
+    top: 0px;
+    right: 0px;
+  }
+  &.toolbar-wrap{
+    top: 0px;
+    right: -294px;
+  }
+  .content{
+    position: relative;
+    left: 6px;
+    width: 294px;
+    background-color: bisque;
+    height: 100%;
+    z-index: 99;
+  }
+  .but{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-bottom: 1px;
+    cursor: pointer;
+    background-color: #7a6e6e;
+    border-radius: 3px 0 0 3px;
+    position: absolute;
+    top: 0;
+    /*right: -6px;*/
+    left: -29px;
+    &.list{
+      background-image: url(./images/list.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    &.pull-wrap{
+      background-image: url(./images/cross.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .toolist{
+    position: absolute;
+    top: 50%;
+    left: -29px;
+    width: 35px;
+    margin-top: -80px;
+    /*background-color: cadetblue;*/
+    .pull{
+      position: relative;
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      margin-bottom: 1px;
+      cursor: pointer;
+      background-color: #7a6e6e;
+      border-radius: 3px 0 0 3px;
+      z-index: 66;
+      .vip{
+        background-image: url(./images/toolbars.png);
+        background-position: -88px -175px;
+      }
+      .cart{
+        background-image: url(./images/toolbars.png);
+        background-position: -50px 0;
+      }
+      .follow{
+        background-image: url(./images/toolbars.png);
+        background-position: -50px -50px;
+      }
+      .history{
+        background-image: url(./images/toolbars.png);
+        background-position: -50px -100px;
+      }
+      .message{
+        background-image: url(./images/toolbars.png);
+        background-position: -190px -150px;
+      }
+      .jimi{
+        background-image: url(./images/toolbars.png);
+        background-position: -50px -150px;
+      }
+      .top{
+        background-image: url(./images/toolbars.png);
+        background-position: -50px -250px;
+      }
+
+      .tab-text {
+        width: 62px;
+        height: 35px;
+        line-height: 35px;
+        color: #fff;
+        text-align: center;
+        font-family: 微软雅黑;
+        position: absolute;
+        /*position: relative;*/
+        z-index: 1;
+        left: 35px;
+        top: 0;
+        background-color: #7a6e6e;
+        border-radius: 3px 0 0 3px;
+        font-style: normal;
+        -webkit-transition: left .3s ease-in-out .1s;
+        transition: left .3s ease-in-out .1s;
+      }
+      .tab-ico{
+        display: inline-block;
+        position: relative;
+        /*background-images: url(img/toolbars.png);*/
+        background-color:#7a6e6e ;
+        border-radius: 3px 0 0 3px;
+        z-index: 2;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  }
+
+  &>.pull{
+    position: relative;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-bottom: 1px;
+    cursor: pointer;
+    background-color: #7a6e6e;
+    border-radius: 3px 0 0 3px;
+    z-index: 66;
+    .tab-ico{
+      display: inline-block;
+      position: relative;
+      /*background-images: url(img/toolbars.png);*/
+      background-color:#7a6e6e ;
+      border-radius: 3px 0 0 3px;
+      z-index: 2;
+      width: 35px;
+      height: 35px;
+    }
+    .top{
+      background-image: url(./images/toolbars.png);
+      background-position: -50px -250px;
+    }
+
+    .tab-text {
+      width: 62px;
+      height: 35px;
+      line-height: 35px;
+      color: #fff;
+      text-align: center;
+      font-family: 微软雅黑;
+      position: absolute;
+      /*position: relative;*/
+      z-index: 1;
+      left: 35px;
+      top: 0;
+      background-color: #7a6e6e;
+      border-radius: 3px 0 0 3px;
+      font-style: normal;
+      -webkit-transition: left .3s ease-in-out .1s;
+      transition: left .3s ease-in-out .1s;
+    }
+  }
+  &>.back{
+    position: absolute;
+    bottom: 0;
+    /*right: -6px;*/
+    left: -29px;
+    display: inline-block;
+    background-image: url(./images/toolbars.png);
+
+  }
+}
 .main {
   margin: 10px 0;
 
