@@ -5,4 +5,11 @@ export const getCategoryList = () => trueRequest.get('/product/getBaseCategoryLi
 export const getListCont = () => mockRequest.get('/listCont');
 export const getFloor = () => mockRequest.get('/floor');
 
+export const getSearch = (data) =>
+    trueRequest({
+            url: '/list',
+            method: 'post',
+            data: data
+        }
+    );
 

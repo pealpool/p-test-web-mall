@@ -13,7 +13,7 @@ mockRequest.interceptors.request.use((config) => {
 })
 mockRequest.interceptors.response.use(res => {
     nprogress.done();
-    return res;
+    return res.data;
 }, error => {
     console.log('数据返回失败:', error);
     return new Promise(() => {});

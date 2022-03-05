@@ -55,7 +55,7 @@
           </ul>
         </div>
         <!--selector-->
-        <SearchSelector />
+        <SearchSelector/>
         <!--details-->
         <div class="details clearfix">
           <div class="sui-navbar">
@@ -447,32 +447,83 @@
 
 <script>
 import SearchSelector from './SearchSelector'
+import {getSearch, getCategoryList} from "@/api";
 
 export default {
   name: 'Search',
+  data() {
+    return {
+      searchParams: {
+        //产品相应的id
+        category1Id: "",
+        category2Id: "",
+        category3Id: "",
+        //产品的名字
+        categoryName: "",
+        //搜索的关键字
+        keyword: "",
+        //排序:初始状态应该是综合且降序
+        order: "1:desc",
+        //第几页
+        pageNo: 1,
+        //每一页展示条数
+        pageSize: 3,
+        //平台属性的操作
+        props: [],
+        //品牌
+        trademark: "",
+      }
+    }
+  },
   components: {SearchSelector},
+  beforeMount() {
+    this.ObjAssign();
+  },
+  mounted() {
+    this.getSInfo();
+  },
+  methods: {
+    ObjAssign() {
+      Object.assign(this.searchParams, this.$route.query, this.$route.params);
+    },
+    getSInfo() {
+      this.$store.dispatch('getSearchInfo', this.searchParams);
+    }
+  },
+  watch: {
+    $route() {
+      this.ObjAssign();
+      this.getSInfo();
+      this.searchParams.category1Id = undefined;
+      this.searchParams.category2Id = undefined;
+      this.searchParams.category3Id = undefined;
+    }
+  }
 
 }
 //todo Search
 </script>
 
 <style scoped lang="less">
-.toolbar{
+.toolbar {
   position: fixed;
   z-index: 999;
   width: 300px;
   height: 100%;
   background-color: #7a6e6e;
   transition: right .3s ease-in-out 0s;
-  &.toolbar-out{
+
+  &.toolbar-out {
     top: 0px;
     right: 0px;
   }
-  &.toolbar-wrap{
+
+  &.toolbar-wrap {
     top: 0px;
     right: -294px;
   }
-  .content{
+
+  .content {
     position: relative;
     left: 6px;
     width: 294px;
@@ -480,7 +531,8 @@ export default {
     height: 100%;
     z-index: 99;
   }
-  .but{
+
+  .but {
     position: relative;
     width: 35px;
     height: 35px;
@@ -494,25 +546,29 @@ export default {
     top: 0;
     /*right: -6px;*/
     left: -29px;
-    &.list{
+
+    &.list {
       background-image: url(./images/list.png);
       background-repeat: no-repeat;
       background-size: cover;
     }
-    &.pull-wrap{
+
+    &.pull-wrap {
       background-image: url(./images/cross.png);
       background-repeat: no-repeat;
       background-size: cover;
     }
   }
-  .toolist{
+
+  .toolist {
     position: absolute;
     top: 50%;
     left: -29px;
     width: 35px;
     margin-top: -80px;
     /*background-color: cadetblue;*/
-    .pull{
+
+    .pull {
       position: relative;
       width: 35px;
       height: 35px;
@@ -523,31 +579,38 @@ export default {
       background-color: #7a6e6e;
       border-radius: 3px 0 0 3px;
       z-index: 66;
-      .vip{
+
+      .vip {
         background-image: url(./images/toolbars.png);
         background-position: -88px -175px;
       }
-      .cart{
+
+      .cart {
         background-image: url(./images/toolbars.png);
         background-position: -50px 0;
       }
-      .follow{
+
+      .follow {
         background-image: url(./images/toolbars.png);
         background-position: -50px -50px;
       }
-      .history{
+
+      .history {
         background-image: url(./images/toolbars.png);
         background-position: -50px -100px;
       }
-      .message{
+
+      .message {
         background-image: url(./images/toolbars.png);
         background-position: -190px -150px;
       }
-      .jimi{
+
+      .jimi {
         background-image: url(./images/toolbars.png);
         background-position: -50px -150px;
       }
-      .top{
+
+      .top {
         background-image: url(./images/toolbars.png);
         background-position: -50px -250px;
       }
@@ -570,11 +633,12 @@ export default {
         -webkit-transition: left .3s ease-in-out .1s;
         transition: left .3s ease-in-out .1s;
       }
-      .tab-ico{
+
+      .tab-ico {
         display: inline-block;
         position: relative;
         /*background-images: url(img/toolbars.png);*/
-        background-color:#7a6e6e ;
+        background-color: #7a6e6e;
         border-radius: 3px 0 0 3px;
         z-index: 2;
         width: 35px;
@@ -583,7 +647,7 @@ export default {
     }
   }
 
-  &>.pull{
+  & > .pull {
     position: relative;
     width: 35px;
     height: 35px;
@@ -594,17 +658,19 @@ export default {
     background-color: #7a6e6e;
     border-radius: 3px 0 0 3px;
     z-index: 66;
-    .tab-ico{
+
+    .tab-ico {
       display: inline-block;
       position: relative;
       /*background-images: url(img/toolbars.png);*/
-      background-color:#7a6e6e ;
+      background-color: #7a6e6e;
       border-radius: 3px 0 0 3px;
       z-index: 2;
       width: 35px;
       height: 35px;
     }
-    .top{
+
+    .top {
       background-image: url(./images/toolbars.png);
       background-position: -50px -250px;
     }
@@ -628,7 +694,8 @@ export default {
       transition: left .3s ease-in-out .1s;
     }
   }
-  &>.back{
+
+  & > .back {
     position: absolute;
     bottom: 0;
     /*right: -6px;*/
@@ -638,6 +705,7 @@ export default {
 
   }
 }
+
 .main {
   margin: 10px 0;
 

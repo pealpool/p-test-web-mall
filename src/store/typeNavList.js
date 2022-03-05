@@ -1,6 +1,5 @@
 import {getCategoryList} from '@/api';
 
-
 const state = {
     listArr: []
 };
@@ -14,7 +13,7 @@ const actions = {
 
 const mutations = {
     GETLISTARR(state, value) {
-        state.listArr = value.data;
+        state.listArr = value;
     }
 };
 
