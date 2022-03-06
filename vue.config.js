@@ -6,6 +6,7 @@ module.exports = defineConfig({
     proxy: {
       '/api': {
         target: 'http://39.98.123.211'
+        // target: 'http://82.156.11.187/'
       }
     }
   }

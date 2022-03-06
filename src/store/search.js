@@ -6,9 +6,9 @@ const state = {
 const actions = {
     async getSearchInfo({commit}, params = {}) {
         let arr = await getSearch(params);
-        // if (arr.code == 200) {
+        if (arr.code == 200) {
             commit('GETSEARCHINFO', arr.data);
-        // }
+        }
     }
 };
 const mutations = {
