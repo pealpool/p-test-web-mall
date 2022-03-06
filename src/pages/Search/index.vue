@@ -447,7 +447,6 @@
 
 <script>
 import SearchSelector from './SearchSelector'
-import {getSearch, getCategoryList} from "@/api";
 
 export default {
   name: 'Search',

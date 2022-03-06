@@ -11,7 +11,8 @@
                     :class="{cur : index === whichIndex}"
                     @mouseenter="changeBg(index)"
                 >
-                  <a :data-cat1ID="c1.categoryId"
+                  <a href="#"
+                     :data-cat1ID="c1.categoryId"
                      :data-CatName=" c1.categoryName "
                   >{{ c1.categoryName }}
                   </a>
@@ -23,17 +24,17 @@
                   <div class="subitem">
                     <dl v-for="c2 in c1.categoryChild" :key="c2.categoryId" class="fore">
                       <dt>
-                        <a
-                            :data-cat2ID="c2.categoryId"
-                            :data-CatName=" c2.categoryName "
+                        <a href="#"
+                           :data-cat2ID="c2.categoryId"
+                           :data-CatName=" c2.categoryName "
                         >{{ c2.categoryName }}
                         </a>
                       </dt>
                       <dd>
                         <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                          <a
-                              :data-cat3ID="c3.categoryId"
-                              :data-CatName=" c3.categoryName "
+                          <a href="#"
+                             :data-cat3ID="c3.categoryId"
+                             :data-CatName=" c3.categoryName "
                           >{{ c3.categoryName }}
                           </a>
                         </em>

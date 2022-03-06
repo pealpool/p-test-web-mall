@@ -159,9 +159,18 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: 'SearchSelector',
-
+  computed: {
+    /*...mapGetters({
+      attrsList: state => state.state.attrsList(),
+      goodsList: state => state.state.goodsList(),
+      trademarkList: state => state.state.trademarkList(),
+    })*/
+    ...mapGetters(['attrsList', 'trademarkList'])
+  }
 }
 </script>
 
