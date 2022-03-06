@@ -96,11 +96,11 @@ export default {
       if (catname) {
         let query = {categoryName: catname};
         if (cat1id) {
-          query.category1id = cat1id;
+          query.category1Id = cat1id;
         } else if (cat2id) {
-          query.category2id = cat2id;
+          query.category2Id = cat2id;
         } else if (cat3id) {
-          query.category3id = cat3id;
+          query.category3Id = cat3id;
         }
         let location = {name: 'search'};
         if (this.$route.params) {

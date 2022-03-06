@@ -17,7 +17,7 @@
       <div class="fl value">
         <ul class="type-list">
           <li v-for="(a,index) in t.attrValueList" :key="index">
-            <a>{{ a }}</a>
+            <a href="javascript:;">{{ a }}</a>
           </li>
         </ul>
       </div>

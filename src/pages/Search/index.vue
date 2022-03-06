@@ -48,7 +48,7 @@
             </li>
           </ul>
           <ul class="fl sui-tag">
-            <li class="with-x">手机</li>
+            <li class="with-x">手机<i>×</i></li>
             <li class="with-x">iphone<i>×</i></li>
             <li class="with-x">华为<i>×</i></li>
             <li class="with-x">OPPO<i>×</i></li>
