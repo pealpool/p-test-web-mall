@@ -13,3 +13,4 @@ export const getSearch = (data) =>
         }
     );
 
+export const getPhoneCode = (phone) => trueRequest.get(`/user/passport/sendCode/${phone}`);

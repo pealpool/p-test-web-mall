@@ -50,13 +50,13 @@ export default {
     let $this = this;
     (async function (){
       let r = await getListCont();
-      if(r.code == 200){
+      if(r.code === 200){
         $this.listContJSON = r.data;
       }
     })();
     (async function (){
       let r = await getFloor();
-      if(r.code == 200){
+      if(r.code === 200){
         $this.floorJSON = r.data;
       }
     })();
